@@ -9,9 +9,9 @@ import { FormBuilder } from '@angular/forms';
 })
 export class CartComponent {
   items = this.cartService.getItems();
-  chekoutForm = this.formBuilder.group({
+  checkoutForm = this.formBuilder.group({
     name: '',
-    adress: ''
+    address: ''
   });
 
   constructor(
@@ -21,6 +21,10 @@ export class CartComponent {
     
    }
 
-  
+  OnSubmit(): void{
+    this.items = this.cartService.clearCart();
+    console.warn('Your order has bee submitted',this.checkoutForm.value);
+    this.checkoutForm.reset();
+  }
 
 }
